@@ -1,4 +1,4 @@
-# صورة أساسية تحتوي على Node.js وPython
+# صورة أساسية تحتوي على Node.js
 FROM node:18
 
 # تثبيت Python والمكتبات المطلوبة
@@ -15,7 +15,6 @@ RUN npm install
 
 # إعداد بيئة افتراضية لـ Python
 RUN python3 -m venv /app/venv
-ï
 
 # تثبيت مكتبات Python
 RUN /app/venv/bin/pip install -r requirements.txt
