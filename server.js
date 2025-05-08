@@ -5,8 +5,10 @@ const { spawn } = require('child_process');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-app.use(cors());
+const corsOptions = {
+  origin: 'https://web-production-cf549.up.railway.app', // تحديد المصدر الذي يمكنه الوصول
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.get('/hello', (req, res) => {
