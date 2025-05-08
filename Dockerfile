@@ -1,22 +1,24 @@
+# صورة أساسية تحتوي على Node.js وPython
 FROM node:18
 
-# تثبيت Python ومتطلبات النظام
-RUN apt update && apt install -y python3 python3-pip python3-venv
+# تثبيت Python والمكتبات المطلوبة
+RUN apt-get update && apt-get install -y python3 python3-pip python3-venv
 
-# تعيين مجلد العمل
+# إعداد مجلد العمل
 WORKDIR /app
 
-# نسخ الملفات
+# نسخ ملفات المشروع
 COPY . .
 
-# تثبيت باقات Node.js
+# تثبيت مكتبات Node.js
 RUN npm install
 
-# إنشاء بيئة افتراضية وتثبيت باقات Python بداخلها
-RUN python3 -m venv venv && \
-    . venv/bin/activate && \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
+# إعداد بيئة افتراضية لـ Python
+RUN python3 -m venv /app/venv
+ï
 
-# تشغيل السيرفر
+# تثبيت مكتبات Python
+RUN /app/venv/bin/pip install -r requirements.txt
+
+# تعيين الأمر الافتراضي
 CMD ["npm", "start"]
