@@ -22,7 +22,7 @@ app.post('/predict', (req, res) => {
     return res.status(400).json({ error: 'input_data لازم تكون مصفوفة 60 قيمة' });
   }
 
-  const python = spawn('python3', ['predict.py', JSON.stringify(input)]);
+  const python = spawn('python', ['./predict.py', JSON.stringify(input)]);
 
   let result = '';
   python.stdout.on('data', (data) => {
